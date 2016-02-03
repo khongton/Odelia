@@ -104,7 +104,12 @@ public class Test extends Scroll
             addObject(new Box(), getWidth()/2 + 600, getHeight()/2 - 800 + (i * 100));
         
         //area between left wall and this floor should be a death sentence
-            
+        // edit this when we gte an actual spike sprite
+        final int SPIKE_WIDTH = 30;
+        final int NUM_SPIKES = 15;
+        for (int i = 1; i < NUM_SPIKES; i++)
+            addObject(new Spikes(), getWidth()/2 + 635 + i * SPIKE_WIDTH, getHeight()/2 - 658);
+        
         //form pit floor
         for (int i = 1; i < 10; i++)
             addObject(new Box(), getWidth()/2 + 600 + i * 100, getHeight()/2 - 600);
