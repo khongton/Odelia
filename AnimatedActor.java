@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+import java.util.ArrayList;
+
 /**
  * Write a description of class AnimatedActor here.
  * 
@@ -8,12 +10,32 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class AnimatedActor extends Actor
 {
-    private GreenfootImage[] idle;
-    private GreenfootImage[] walking;
-    private int delay;
+    // Keep track of current animation
+    private enum CURRENT_ANIMATION
+    {
+        IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT;
+    }
     
-    private int curTime;
-    private int curImage;
+    // Store arrays for both animations in an array list
+    private class ImageList
+    {
+        public GreenfootImage[] list;
+        
+        public ImageList(String prefix, int numImages)
+        {
+            this.list = new GreenfootImage[numImages];
+            
+            for (int i = 0; i < numImages; i++)
+            {
+                this.list[i] = new GreenfootImage(prefix + "_" + i + ".png");
+            }
+        }
+    }
+    
+    private ArrayList<ImageList> animations;
+    private int imageBuffer;
+    private int currentImage;
+    private int currentAnimation;
     
     // Default constructor
     public AnimatedActor()
@@ -21,24 +43,36 @@ public class AnimatedActor extends Actor
         // Do we need to do anything here?
     }
     
-    public AnimatedActor(String actor, int numIdle, int numWalking, int delay)
+    public AnimatedActor(String actor, int numIdle, int numWalking)
     {
-        this.idle = new GreenfootImage[numIdle];
-        this.walking = new GreenfootImage[numWalking];
+        animations = new ArrayList<ImageList>();
         
-        for (int i = 0; i < numIdle; i++)
+        // Initialize idle animations
+        animations.add(new ImageList(actor + "_idle_left", numIdle));
+        animations.add(new ImageList(actor + "_idle_right", numIdle));
+        
+        // Initialize walking animation
+        animations.add(new ImageList(actor + "_walking_left", numWalking));
+        animations.add(new ImageList(actor + "_walking_right", numWalking));
+        
+        this.imageBuffer = 3;
+        this.currentImage = 0;
+        this.currentAnimation = CURRENT_ANIMATION.IDLE_LEFT.ordinal();
+    }
+    
+    private boolean animateBuffer()
+    {
+        if (imageBuffer < 1)
         {
-            this.idle[i] = new GreenfootImage(actor + "_" + "idle" + "_" + i + ".png");
+            imageBuffer = 10;
+            return true;
+        }
+        else
+        {
+            imageBuffer--;
         }
         
-        for (int i = 0; i < numWalking; i++)
-        {
-            this.walking[i] = new GreenfootImage(actor + "_" + "walking" + "_" + i + ".png");
-        }
-        
-        this.delay = delay;
-        this.curTime = 0;
-        this.curImage = 0;
+        return false;
     }
     
     /**
@@ -47,15 +81,35 @@ public class AnimatedActor extends Actor
      */
     public void act() 
     {
-        if (delay == curTime++)
+        if (currentAnimation != CURRENT_ANIMATION.WALKING_LEFT.ordinal() && Greenfoot.isKeyDown("left"))
         {
-            // Check Foaad's game for modulus "algorithm" for animation
-            if (++curImage == walking.length)
-            {
-                curImage = 0;
-            }
-            curTime = 0;
-            this.setImage(walking[curImage]);
+            this.imageBuffer = 3;
+            this.currentImage = 0;
+            this.currentAnimation = CURRENT_ANIMATION.WALKING_LEFT.ordinal();
+        }
+        else if (currentAnimation != CURRENT_ANIMATION.WALKING_RIGHT.ordinal() && Greenfoot.isKeyDown("right"))
+        {
+            this.imageBuffer = 3;
+            this.currentImage = 0;
+            this.currentAnimation = CURRENT_ANIMATION.WALKING_RIGHT.ordinal();
+        }
+        else if (currentAnimation == CURRENT_ANIMATION.WALKING_LEFT.ordinal() && !Greenfoot.isKeyDown("left"))
+        {
+            this.imageBuffer = 3;
+            this.currentImage = 0;
+            this.currentAnimation = CURRENT_ANIMATION.IDLE_LEFT.ordinal();
+        }
+        else if (currentAnimation == CURRENT_ANIMATION.WALKING_RIGHT.ordinal() && !Greenfoot.isKeyDown("right"))
+        {
+            this.imageBuffer = 3;
+            this.currentImage = 0;
+            this.currentAnimation = CURRENT_ANIMATION.IDLE_RIGHT.ordinal();
+        }
+        
+        if (animateBuffer())
+        {
+            currentImage = (currentImage + 1) % animations.get(currentAnimation).list.length;
+            this.setImage(animations.get(currentAnimation).list[currentImage]);
         }
     }    
 }

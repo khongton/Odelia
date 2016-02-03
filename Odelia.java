@@ -1,3 +1,5 @@
+ 
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -6,13 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Odelia extends AnimatedActor
+public class Odelia extends QActor
 {
-    private final String[] idleImages = { "odelia_idle_0.png", "odelia_idle_1.png", "odelia_idle_2.png" };
+    public int speed = 5;
+    public int ySpeed = 0;
+    public int jumpStr = 22;
+    public boolean onGround;
     
     public Odelia()
     {
-        super("Odelia", 2, 8, 60);
+        super("Odelia", 2, 8);
     }
     
     /**
@@ -21,7 +26,68 @@ public class Odelia extends AnimatedActor
      */
     public void act() 
     {
-        // Animate actor
         super.act();
+        
+        getDirection();
+        move();
+        // moveDebug();
+        collisions();
     }    
+    
+    // public void moveDebug()
+    // {
+        // if (Greenfoot.isKeyDown("left"))
+            // setLocation(getX() - 10, getY());
+        // if (Greenfoot.isKeyDown("right"))
+            // setLocation(getX() + 10, getY());
+        // if (Greenfoot.isKeyDown("up"))
+            // setLocation(getX(), getY() - 10);
+        // if (Greenfoot.isKeyDown("down"))
+            // setLocation(getX(), getY() + 10);
+    // }
+    
+    public void getDirection()
+    {
+        if (Greenfoot.isKeyDown("left"))
+            setLocation(getX() - speed, getY());
+        if (Greenfoot.isKeyDown("right"))
+            setLocation(getX() + speed, getY());
+        if (Greenfoot.isKeyDown("up") && onGround)
+            ySpeed -= jumpStr;
+    }
+    
+    public void move()
+    {
+        ySpeed++;
+        setLocation(getX(), getY() + ySpeed/2);
+        onGround = false;
+    }
+    
+    //Update this with collision detecter from other game
+    public void collisions() 
+    {
+        if (isTouching(Penguin.class))
+            Greenfoot.setWorld(new Restart());
+        
+        while (getOneObjectAtOffset(1, getImage().getHeight()/2 + 1, Box.class) != null)
+        {
+            setLocation(getX(), getY() - 1);
+            onGround = true;
+            ySpeed = 0;
+        }
+        while (getOneObjectAtOffset(1, -getImage().getHeight()/2 - 1, Box.class) != null)
+        {
+            setLocation(getX(), getY() + 1);
+            ySpeed = 0;
+        }
+        while (getOneObjectAtOffset(getImage().getWidth()/2+1, 0, Box.class) != null)
+        {
+            setLocation(getX() - 1, getY());
+        }
+        while (getOneObjectAtOffset(-getImage().getWidth()/2-1, 0, Box.class) != null)
+        {
+            setLocation(getX() + 1, getY());
+        }
+    }
 }
+
