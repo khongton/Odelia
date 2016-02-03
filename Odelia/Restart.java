@@ -17,7 +17,7 @@ public class Restart extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1044, 675, 1, false);
-        addObject(new Text("You touched the penguin."), getWidth()/2, getHeight()/2);
+        addObject(new Text("You assassinated the penguin."), getWidth()/2, getHeight()/2);
         addObject(new Text("Press enter to restart", 30), getWidth()/2, getHeight()/2 + 40);
     }
     
