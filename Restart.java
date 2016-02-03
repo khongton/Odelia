@@ -1,5 +1,3 @@
- 
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -15,12 +13,20 @@ public class Restart extends World
      * Constructor for objects of class Restart.
      * 
      */
-    public Restart()
+    public Restart(boolean success)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1044, 675, 1, false);
-        addObject(new Text("You assassinated the penguin."), getWidth()/2, getHeight()/2);
-        addObject(new Text("Press enter to restart", 30), getWidth()/2, getHeight()/2 + 40);
+        if (success)
+        {
+            addObject(new Text("You assassinated the penguin."), getWidth()/2, getHeight()/2);
+            addObject(new Text("Press enter to restart", 30), getWidth()/2, getHeight()/2 + 40);
+        }
+        else
+        {
+            addObject(new Text("You died."), getWidth()/2, getHeight()/2);
+            addObject(new Text("Press enter to restart", 30), getWidth()/2, getHeight()/2 + 40);
+        }
     }
     
     public void act()

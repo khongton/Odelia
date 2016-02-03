@@ -1,5 +1,3 @@
- 
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -14,6 +12,8 @@ public class Odelia extends QActor
     public int ySpeed = 0;
     public int jumpStr = 22;
     public boolean onGround;
+    
+    private World world;
     
     public Odelia()
     {
@@ -32,19 +32,26 @@ public class Odelia extends QActor
         move();
         // moveDebug();
         collisions();
+        
+        // Prevent endless falls
+        if (getY() > 350)
+        {
+            Greenfoot.setWorld(new Restart(false));
+        }
     }    
     
-    // public void moveDebug()
-    // {
-        // if (Greenfoot.isKeyDown("left"))
-            // setLocation(getX() - 10, getY());
-        // if (Greenfoot.isKeyDown("right"))
-            // setLocation(getX() + 10, getY());
-        // if (Greenfoot.isKeyDown("up"))
-            // setLocation(getX(), getY() - 10);
-        // if (Greenfoot.isKeyDown("down"))
-            // setLocation(getX(), getY() + 10);
-    // }
+    
+    public void moveDebug()
+    {
+        if (Greenfoot.isKeyDown("left"))
+            setLocation(getX() - 10, getY());
+        if (Greenfoot.isKeyDown("right"))
+            setLocation(getX() + 10, getY());
+        if (Greenfoot.isKeyDown("up"))
+            setLocation(getX(), getY() - 10);
+        if (Greenfoot.isKeyDown("down"))
+            setLocation(getX(), getY() + 10);
+    }
     
     public void getDirection()
     {
@@ -67,7 +74,9 @@ public class Odelia extends QActor
     public void collisions() 
     {
         if (isTouching(Penguin.class))
-            Greenfoot.setWorld(new Restart());
+            Greenfoot.setWorld(new Restart(true));
+        else if (isTouching(Spikes.class))
+            Greenfoot.setWorld(new Restart(false));
         
         while (getOneObjectAtOffset(1, getImage().getHeight()/2 + 1, Box.class) != null)
         {
