@@ -12,7 +12,7 @@ public class Odelia extends AnimatedActor
     
     public Odelia()
     {
-        super("odelia", 4, 4, 60);
+        super("Odelia", 2, 8, 60);
     }
     
     /**

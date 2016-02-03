@@ -50,7 +50,7 @@ public class AnimatedActor extends Actor
         if (delay == curTime++)
         {
             // Check Foaad's game for modulus "algorithm" for animation
-            if (++curImage == idle.length)
+            if (++curImage == walking.length)
             {
                 curImage = 0;
             }
