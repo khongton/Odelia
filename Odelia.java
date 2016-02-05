@@ -28,6 +28,34 @@ public class Odelia extends QActor
     {
         super.act();
         
+        // Just in case we need to tweak this
+        final int IMAGE_BUFFER = 3;
+        
+        if (getCurrentAnimation() != AnimatedActor.CURRENT_ANIMATION.WALKING_LEFT.ordinal() && Greenfoot.isKeyDown("left"))
+        {
+            setImageBuffer(IMAGE_BUFFER);
+            setCurrentImage(0);
+            setAnimation(AnimatedActor.CURRENT_ANIMATION.WALKING_LEFT.ordinal());
+        }
+        else if (getCurrentAnimation() != AnimatedActor.CURRENT_ANIMATION.WALKING_RIGHT.ordinal() && Greenfoot.isKeyDown("right"))
+        {
+            setImageBuffer(IMAGE_BUFFER);
+            setCurrentImage(0);
+            setAnimation(AnimatedActor.CURRENT_ANIMATION.WALKING_RIGHT.ordinal());
+        }
+        else if (getCurrentAnimation() == AnimatedActor.CURRENT_ANIMATION.WALKING_LEFT.ordinal() && !Greenfoot.isKeyDown("left"))
+        {
+            setImageBuffer(IMAGE_BUFFER);
+            setCurrentImage(0);
+            setAnimation(AnimatedActor.CURRENT_ANIMATION.IDLE_LEFT.ordinal());
+        }
+        else if (getCurrentAnimation() == AnimatedActor.CURRENT_ANIMATION.WALKING_RIGHT.ordinal() && !Greenfoot.isKeyDown("right"))
+        {
+            setImageBuffer(IMAGE_BUFFER);
+            setCurrentImage(0);
+            setAnimation(AnimatedActor.CURRENT_ANIMATION.IDLE_RIGHT.ordinal());
+        }
+        
         getDirection();
         move();
         // moveDebug();
