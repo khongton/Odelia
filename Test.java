@@ -40,7 +40,8 @@ public class Test extends Scroll
         makeZigZagJump();
         
         //Floor after climbing up
-        for (int i = 1; i < 7; i++)
+        addObject(new Box(75, 75), getWidth()/2 + 100, getHeight()/2 - 800);
+        for (int i = 2; i < 7; i++)
             addObject(new Box(), getWidth()/2 + 100 * i, getHeight()/2 - 800);
         
         makePit();
@@ -87,14 +88,14 @@ public class Test extends Scroll
     public void makeZigZagJump()
     {
         //Vertical climbing - jump left/right
-        addObject(new Box(), getWidth()/2 - 100, getHeight()/2 - 300);
-        addObject(new Box(), getWidth()/2 + 100, getHeight()/2 - 400);
-        addObject(new Box(), getWidth()/2 - 100, getHeight()/2 - 500);
+        addObject(new Box(75, 75), getWidth()/2 - 100, getHeight()/2 - 300);
+        addObject(new Box(75, 75), getWidth()/2 + 100, getHeight()/2 - 400);
+        addObject(new Box(75, 75), getWidth()/2 - 100, getHeight()/2 - 500);
         addObject(new Box(), getWidth()/2 + 300, getHeight()/2 - 500);
         addObject(new Box(), getWidth()/2 + 400, getHeight()/2 - 600);
         addObject(new Box(), getWidth()/2 + 500, getHeight()/2 - 600);
-        addObject(new Box(), getWidth()/2 + 100, getHeight()/2 - 600);
-        addObject(new Box(), getWidth()/2 - 100, getHeight()/2 - 700);           
+        addObject(new Box(75, 75), getWidth()/2 + 100, getHeight()/2 - 600);
+        addObject(new Box(75, 75), getWidth()/2 - 100, getHeight()/2 - 700);           
     }
     
     public void makePit()

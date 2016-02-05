@@ -52,8 +52,8 @@ public class AnimatedActor extends Actor
         animations.add(new ImageList(actor + "_idle_right", numIdle));
         
         // Initialize walking animation
-        animations.add(new ImageList(actor + "_walking_left", numWalking));
-        animations.add(new ImageList(actor + "_walking_right", numWalking));
+        animations.add(new ImageList(actor + "_run_left", numWalking));
+        animations.add(new ImageList(actor + "_run_right", numWalking));
         
         this.imageBuffer = 3;
         this.currentImage = 0;
