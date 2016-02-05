@@ -10,6 +10,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Box extends QActor
 {
+    public Box(int width, int height)
+    {
+        getImage().scale(width, height);
+    }
+    
     public Box()
     {
         getImage().scale(100, 100);
