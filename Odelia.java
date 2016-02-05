@@ -17,7 +17,7 @@ public class Odelia extends QActor
     
     public Odelia()
     {
-        super("Odelia", 2, 8);
+        super("Odelia", 10, 4);
     }
     
     /**
