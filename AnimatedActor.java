@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class AnimatedActor extends Actor
 {
     // Keep track of current animation
-    private enum CURRENT_ANIMATION
+    public enum CURRENT_ANIMATION
     {
         IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT;
     }
@@ -75,37 +75,32 @@ public class AnimatedActor extends Actor
         return false;
     }
     
+    public void setAnimation(int animation)
+    {
+        this.currentAnimation = animation;
+    }
+    
+    public void setCurrentImage(int image)
+    {
+        this.currentImage = image;
+    }
+    
+    public void setImageBuffer(int buffer)
+    {
+        this.imageBuffer = buffer;
+    }
+    
+    public int getCurrentAnimation()
+    {
+        return this.currentAnimation;
+    }
+    
     /**
      * Act - do whatever the AnimatedActor wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 
     {
-        if (currentAnimation != CURRENT_ANIMATION.WALKING_LEFT.ordinal() && Greenfoot.isKeyDown("left"))
-        {
-            this.imageBuffer = 3;
-            this.currentImage = 0;
-            this.currentAnimation = CURRENT_ANIMATION.WALKING_LEFT.ordinal();
-        }
-        else if (currentAnimation != CURRENT_ANIMATION.WALKING_RIGHT.ordinal() && Greenfoot.isKeyDown("right"))
-        {
-            this.imageBuffer = 3;
-            this.currentImage = 0;
-            this.currentAnimation = CURRENT_ANIMATION.WALKING_RIGHT.ordinal();
-        }
-        else if (currentAnimation == CURRENT_ANIMATION.WALKING_LEFT.ordinal() && !Greenfoot.isKeyDown("left"))
-        {
-            this.imageBuffer = 3;
-            this.currentImage = 0;
-            this.currentAnimation = CURRENT_ANIMATION.IDLE_LEFT.ordinal();
-        }
-        else if (currentAnimation == CURRENT_ANIMATION.WALKING_RIGHT.ordinal() && !Greenfoot.isKeyDown("right"))
-        {
-            this.imageBuffer = 3;
-            this.currentImage = 0;
-            this.currentAnimation = CURRENT_ANIMATION.IDLE_RIGHT.ordinal();
-        }
-        
         if (animateBuffer())
         {
             currentImage = (currentImage + 1) % animations.get(currentAnimation).list.length;
