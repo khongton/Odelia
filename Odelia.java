@@ -56,16 +56,16 @@ public class Odelia extends QActor
             setAnimation(AnimatedActor.CURRENT_ANIMATION.IDLE_RIGHT.ordinal());
         }
         
-        getDirection();
-        move();
-        // moveDebug();
+        // getDirection();
+        // move();
+        moveDebug();
         collisions();
         
         // Prevent endless falls
-        if (getY() > 350)
-        {
-            Greenfoot.setWorld(new Restart(false));
-        }
+        // if (getY() > 350)
+        // {
+            // Greenfoot.setWorld(new Restart(false));
+        // }
     }    
     
     
