@@ -14,12 +14,6 @@ public class Penguin extends QActor
     {
         getImage().scale(100, 100);
     }
-    
-    public Penguin(int width, int height)
-    {
-        getImage().scale(width, height);
-    }
-    
     /**
      * Act - do whatever the Penguin wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
