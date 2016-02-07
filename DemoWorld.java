@@ -28,13 +28,16 @@ public class DemoWorld extends SWorld
         addObject(new Penguin(), 1100, getHeight() + 2000);
         
         //Zigzag Shooter
-        addObject(new Penguin(20, 20), 1800, getHeight() + 600);
+        addObject(new Penguin(100, 100, false, 0), 1800, getHeight() + 600);
         
         //Top level enemy
-        addObject(new Penguin(20, 20), 1300, getHeight() - 100);
+        addObject(new Penguin(50, 50, true, 700), 1100, getHeight() - 100);
         
         //Pit enemy
-        addObject(new Penguin(20, 20), 800, getHeight() + 1200);
+        addObject(new Penguin(50, 50, true, 200), 700, getHeight() + 1200);
+        
+        //Enemy before politician
+        addObject(new Penguin(50, 50, true, 330), 500, getHeight() + 1600);
     }
     
     public void makeLevel()
@@ -91,6 +94,9 @@ public class DemoWorld extends SWorld
           addObject(new Box(75, 75), 2300, getHeight() + 600);
           addObject(new Box(75, 75), 2100, getHeight() + 700);
           
+          for (int i = 0; i < 17; i++)
+            addObject(new Spikes(), 1965 + i * 30, getHeight() + 1040);
+          
           addObject(new Box(), 1800, getHeight() + 700);
           addObject(new Box(), 1700, getHeight() + 700);
           addObject(new Box(), 1700, getHeight() + 600);
@@ -126,7 +132,12 @@ public class DemoWorld extends SWorld
         //Bottom part of pit
         for (int i = 0; i < 10; i++)
             addObject(new Box(), 1400 - i * 100, getHeight() + 1300);
-            
+        
+        //Place spikes in pit
+        for (int i = 0; i < 13; i++)    
+            addObject(new Spikes(), 1435 - i * 30, getHeight() + 1245);  
+        //Prevent overlap with box
+        addObject(new Spikes(), 1065, getHeight() + 1245);
         //area between left wall and this floor should be a death sentence
         // edit this when we gte an actual spike sprite
         // final int SPIKE_WIDTH = 30;
@@ -140,6 +151,7 @@ public class DemoWorld extends SWorld
     {      
         addObject(new Box(), 300, getHeight() + 1200);
         
+        //Make staircase leading down
         for (int i = 1; i < 6; i++)
             addObject(new Box(), 100, getHeight() + 1200 + 100 * i);
         for (int i = 1; i < 5; i++)
@@ -149,6 +161,7 @@ public class DemoWorld extends SWorld
         for (int i = 1; i < 3; i++)
             addObject(new Box(), 400, getHeight() + 1500 + 100 * i);
 
+        //Spawn final floors and wall
         for (int i = 0; i < 4; i++) {
             addObject(new Box(), 500 + i * 100, getHeight() + 1700);
             addObject(new Box(), 800, getHeight() + 1800 + i * 100);
