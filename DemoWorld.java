@@ -28,16 +28,16 @@ public class DemoWorld extends SWorld
         addObject(new Penguin(), 1100, getHeight() + 2000);
         
         //Zigzag Shooter
-        addObject(new Penguin(100, 100, false, 0), 1800, getHeight() + 600);
+        addObject(new RangedEnemy(100, 100, false, 0), 1800, getHeight() + 600);
         
         //Top level enemy
-        addObject(new Penguin(50, 50, true, 700), 1100, getHeight() - 100);
+        addObject(new MeleeEnemy(50, 50, true, 700), 1100, getHeight() - 100);
         
         //Pit enemy
-        addObject(new Penguin(50, 50, true, 200), 700, getHeight() + 1200);
+        addObject(new MeleeEnemy(50, 50, true, 200), 700, getHeight() + 1200);
         
         //Enemy before politician
-        addObject(new Penguin(50, 50, true, 330), 500, getHeight() + 1600);
+        addObject(new MeleeEnemy(50, 50, true, 330), 500, getHeight() + 1600);
     }
     
     public void makeLevel()
