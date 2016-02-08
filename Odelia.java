@@ -56,10 +56,10 @@ public class Odelia extends QActor
             setAnimation(AnimatedActor.CURRENT_ANIMATION.IDLE_RIGHT.ordinal());
         }
         
-        // getDirection();
+        getDirection();
         // move();
         moveDebug();
-        collisions();
+        // collisions();
         
         // Prevent endless falls
         // if (getY() > 350)
@@ -105,6 +105,9 @@ public class Odelia extends QActor
             Greenfoot.setWorld(new Restart(true));
         else if (isTouching(Spikes.class))
             Greenfoot.setWorld(new Restart(false));
+            
+        removeTouching(MeleeEnemy.class);
+        removeTouching(RangedEnemy.class);
         
         while (getOneObjectAtOffset(1, getImage().getHeight()/2 + 1, Box.class) != null)
         {
