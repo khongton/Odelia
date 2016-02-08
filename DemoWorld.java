@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class DemoWorld extends SWorld
 {
     private Odelia od;
+    private GreenfootSound bgm;
+    
     /**
      * Constructor for objects of class DemoWorld.
      * 
@@ -21,6 +23,19 @@ public class DemoWorld extends SWorld
         makeLevel();
         placeInstructions();
         placeEnemies();
+        
+        bgm = new GreenfootSound("bgm.mp3");
+        // bgm.playLoop();
+    }
+    
+    public void started()
+    {
+        bgm.playLoop();
+    }
+    
+    public void stopped()
+    {
+        bgm.pause();
     }
     
     public void placeInstructions()
