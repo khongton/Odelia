@@ -1,27 +1,30 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Penguin here.
+ * Write a description of class Bullet here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Penguin extends QActor
+public class Bullet extends QActor
 {
     private boolean canMove;
     private int distTraveled = 0;
-    private int speed = 2;
+    private int speed = 1;
     private int maxDistance;
-    public Penguin()
+    
+    public Bullet()
     {
         getImage().scale(100, 100);
     }
-    public Penguin(int width, int height, boolean move, int dist)
+    
+    public Bullet(int width, int height, boolean move, int dist)
     {
         getImage().scale(width, height);
         canMove = move;
         maxDistance = dist;
     }
+    
     /**
      * Act - do whatever the Penguin wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -42,8 +45,7 @@ public class Penguin extends QActor
             }
             else 
             {
-                distTraveled = 0;
-                speed = -speed;
+                getWorld().removeObject(this);
             }
         }
     }
