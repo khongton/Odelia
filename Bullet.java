@@ -10,12 +10,12 @@ public class Bullet extends QActor
 {
     private boolean canMove;
     private int distTraveled = 0;
-    private int speed = 1;
+    private int speed = 4;
     private int maxDistance;
     
     public Bullet()
     {
-        getImage().scale(100, 100);
+        getImage().scale(75, 75);
     }
     
     public Bullet(int width, int height, boolean move, int dist)
@@ -32,7 +32,15 @@ public class Bullet extends QActor
     public void act() 
     {
         checkMove();
+        checkCollision();
     }    
+    
+    
+    private void checkCollision()
+    {
+        if (isTouching(Box.class))
+            getWorld().removeObject(this);
+    }
     
     private void checkMove()
     {
@@ -41,7 +49,7 @@ public class Bullet extends QActor
             if (distTraveled <= maxDistance)
             {
                 setLocation(getX() + speed, getY());
-                distTraveled += 2;
+                distTraveled += 4;
             }
             else 
             {

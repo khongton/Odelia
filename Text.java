@@ -21,6 +21,11 @@ public class Text extends Actor
         setImage(new GreenfootImage(text, size, Color.BLACK, null));
     }
     
+    public Text(String text, int size, boolean isWhite)
+    {
+        setImage(new GreenfootImage(text, size, Color.WHITE, null));
+    }
+    
     /**
      * Act - do whatever the Text wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

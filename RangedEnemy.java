@@ -13,15 +13,13 @@ public class RangedEnemy extends Enemy
     private int speed = 2;
     private int maxDistance;
     
-    private int attackBuffer;
+    private int attackBuffer = 125;
     private int width;
     private int height;
     
     public RangedEnemy()
     {
         getImage().scale(100, 100);
-        
-        attackBuffer = 10;
     }
     
     public RangedEnemy(int width, int height, boolean move, int dist)
@@ -30,7 +28,6 @@ public class RangedEnemy extends Enemy
         canMove = move;
         maxDistance = dist;
         
-        attackBuffer = 10;
         this.width = width;
         this.height = height;
     }
@@ -39,7 +36,7 @@ public class RangedEnemy extends Enemy
     {
         if (attackBuffer < 1)
         {
-            attackBuffer = 10;
+            attackBuffer = 125;
             return true;
         }
         else
@@ -57,7 +54,7 @@ public class RangedEnemy extends Enemy
     {
         if (attackBuffer())
         {
-            // getWorld().addObject(new Bullet(50, 50, true, 1000), getX() + this.width + 10, getY() + (this.height / 2));
+            getWorld().addObject(new Bullet(40, 40, true, 1000), 1865, 1210);
         }
     }
 }
