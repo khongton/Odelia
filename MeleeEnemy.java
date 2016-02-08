@@ -46,6 +46,7 @@ public class MeleeEnemy extends Enemy
             {
                 distTraveled = 0;
                 speed = -speed;
+                getImage().mirrorHorizontally();
             }
         }
     }
