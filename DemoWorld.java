@@ -19,7 +19,17 @@ public class DemoWorld extends SWorld
         addMainActor(od = new Odelia(), 200, getHeight() - 100, 200, 60);
         setScrollingBackground(this.getBackground());
         makeLevel();
+        placeInstructions();
         placeEnemies();
+    }
+    
+    public void placeInstructions()
+    {
+        addObject(new Text("Left/Right for movement.\nUp to jump.", 25, true),
+            300, getHeight() - 300);
+        addObject(new Text("Dodge the guards!", 25, true), 900, getHeight() - 300);
+        addObject(new Text("Find the politician and assassinate him!", 25, true),
+            1800, getHeight() - 300);
     }
     
     public void placeEnemies()
