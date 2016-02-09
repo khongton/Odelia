@@ -19,7 +19,7 @@ public class Restart extends World
         super(800, 600, 1, false);
         if (success)
         {
-            addObject(new Text("You assassinated the penguin."), getWidth()/2, getHeight()/2);
+            addObject(new Text("You assassinated the politician."), getWidth()/2, getHeight()/2);
             addObject(new Text("Press enter to restart", 30), getWidth()/2, getHeight()/2 + 40);
         }
         else

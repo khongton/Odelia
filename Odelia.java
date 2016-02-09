@@ -13,7 +13,7 @@ public class Odelia extends QActor
     public int jumpStr = 22;
     public boolean onGround;
     
-    private World world;
+    private int soundBuffer = 10;
     
     public Odelia()
     {
@@ -61,9 +61,10 @@ public class Odelia extends QActor
         // moveDebug();
         collisions();
         
-        if (getCurrentAnimation() == CurrentAnimation.WALKING_RIGHT.ordinal() || getCurrentAnimation() == CurrentAnimation.WALKING_LEFT.ordinal())
+        if ((getCurrentAnimation() == CurrentAnimation.WALKING_RIGHT.ordinal() || getCurrentAnimation() == CurrentAnimation.WALKING_LEFT.ordinal()) && onGround)
         {
             // Play footstep sound effect
+            bufferSound();
         }
        
         // Prevent endless falls
@@ -71,8 +72,16 @@ public class Odelia extends QActor
         // {
             // Greenfoot.setWorld(new Restart(false));
         // }
-    }    
+    }
     
+    private void bufferSound()
+    {
+        if (soundBuffer-- < 1)
+        {
+            soundBuffer = 10;
+            Greenfoot.playSound("running.wav");
+        }
+    }
     
     public void moveDebug()
     {
