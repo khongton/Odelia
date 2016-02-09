@@ -36,7 +36,7 @@ public class RangedEnemy extends Enemy
     {
         if (attackBuffer < 1)
         {
-            attackBuffer = 125;
+            attackBuffer = 175;
             return true;
         }
         else
@@ -54,7 +54,7 @@ public class RangedEnemy extends Enemy
     {
         if (attackBuffer())
         {
-            getWorld().addObject(new Bullet(40, 40, true, 1000), 1865, 1210);
+            getWorld().addObject(new Bullet(20, 20, true, 1000), 1845, 1210);
         }
     }
 }

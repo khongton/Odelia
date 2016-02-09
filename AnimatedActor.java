@@ -10,12 +10,6 @@ import java.util.ArrayList;
  */
 public class AnimatedActor extends Actor
 {
-    // Keep track of current animation
-    public enum CURRENT_ANIMATION
-    {
-        IDLE_LEFT, IDLE_RIGHT, WALKING_LEFT, WALKING_RIGHT;
-    }
-    
     // Store arrays for both animations in an array list
     private class ImageList
     {
@@ -57,7 +51,7 @@ public class AnimatedActor extends Actor
         
         this.imageBuffer = 3;
         this.currentImage = 0;
-        this.currentAnimation = CURRENT_ANIMATION.IDLE_LEFT.ordinal();
+        this.currentAnimation = CurrentAnimation.IDLE_LEFT.ordinal();
     }
     
     private boolean animateBuffer()
