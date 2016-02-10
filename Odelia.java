@@ -57,9 +57,9 @@ public class Odelia extends QActor
         }
         
         getDirection();
-        move();
-        // moveDebug();
-        collisions();
+        // move();
+        moveDebug();
+        // collisions();
         
         if ((getCurrentAnimation() == CurrentAnimation.WALKING_RIGHT.ordinal() || getCurrentAnimation() == CurrentAnimation.WALKING_LEFT.ordinal()) && onGround)
         {

@@ -63,7 +63,7 @@ public class DemoWorld extends SWorld
         addObject(new MeleeEnemy(51, 73, true, 200), 700, getHeight() + 1215);
         
         //Enemy before politician
-        addObject(new MeleeEnemy(51, 73, true, 330), 500, getHeight() + 1615);
+        // addObject(new MeleeEnemy(51, 73, true, 330), 500, getHeight() + 1615);
     }
     
     public void makeLevel()
@@ -187,11 +187,32 @@ public class DemoWorld extends SWorld
         for (int i = 1; i < 3; i++)
             addObject(new Box(), 400, getHeight() + 1500 + 100 * i);
 
-        //Spawn final floors and wall
-        for (int i = 0; i < 4; i++) {
+        //Spawn floor
+        for (int i = 0; i < 11; i++) {
             addObject(new Box(), 500 + i * 100, getHeight() + 1700);
-            addObject(new Box(), 800, getHeight() + 1800 + i * 100);
-            addObject(new Box(), 800 + i * 100, getHeight() + 2100);
         }
+        
+        // Spawn next "level" up
+        addObject(new Box(), 1600, getHeight() + 1600);
+        addObject(new Box(), 1700, getHeight() + 1600);
+        
+        // Spawn floor with enemy
+        for (int i = 0; i < 5; i++)
+            addObject(new Box(), 1800 + i * 100, getHeight() + 1500);
+            
+        // Make "staircase" on right edge going down
+        addObject(new Box(), 2450, getHeight() + 1500);
+        
+        addObject(new Box(), 2450, getHeight() + 1700);
+        addObject(new Box(), 2350, getHeight() + 1700);
+        
+        addObject(new Box(), 2450, getHeight() + 1900);
+        addObject(new Box(), 2350, getHeight() + 1900);
+        addObject(new Box(), 2250, getHeight() + 1900);
+        
+        addObject(new Box(), 2450, getHeight() + 2100);
+        addObject(new Box(), 2350, getHeight() + 2100);
+        addObject(new Box(), 2250, getHeight() + 2100);
+        addObject(new Box(), 2150, getHeight() + 2100);
     }
 }
