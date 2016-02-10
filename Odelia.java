@@ -119,9 +119,9 @@ public class Odelia extends QActor
             Greenfoot.setWorld(new Restart(true));
         else if (isTouching(Spikes.class))
             Greenfoot.setWorld(new Restart(false));
-        else if (isTouching(Bullet.class))
+        else if (getOneIntersectingObject(Bullet.class) != null)
             Greenfoot.setWorld(new Restart(false));
-        else if (isTouching(MeleeEnemy.class))
+        else if (getOneIntersectingObject(MeleeEnemy.class) != null)
             Greenfoot.setWorld(new Restart(false));
         
         while (getOneObjectAtOffset(1, getImage().getHeight()/2 + 1, Box.class) != null)

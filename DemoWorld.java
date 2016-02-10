@@ -25,6 +25,7 @@ public class DemoWorld extends SWorld
         placeEnemies();
         
         bgm = new GreenfootSound("bgm.mp3");
+        bgm.setVolume(50);
         // bgm.playLoop();
     }
     
