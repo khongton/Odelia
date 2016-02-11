@@ -54,7 +54,7 @@ public class DemoWorld extends SWorld
         addObject(new Penguin(32, 70, false, 0), 775, getHeight() + 1915);
         
         //Zigzag Shooter
-        addObject(new RangedEnemy(53, 63, false, 0, 1), 1800, getHeight() + 620);
+        addObject(new RangedEnemy(53, 63, false, 0), 1800, getHeight() + 620);
         
         //Top level enemy
         addObject(new MeleeEnemy(51, 73, true, 700), 1100, getHeight() - 85);
@@ -68,10 +68,6 @@ public class DemoWorld extends SWorld
         
         addObject(new MeleeEnemy(51, 73, true, 150), 2250, getHeight() + 1815);
         addObject(new MeleeEnemy(51, 73, true, 250), 2150, getHeight() + 2015);
-        
-        //Could remove if we find it too hard
-        addObject(new RangedEnemy(53, 63, false, 0, 2), 1650, getHeight() + 1715);
-        addObject(new RangedEnemy(53, 63, false, 0, 3), 1550, getHeight() + 1915);
         
         //Enemy before politician
         // addObject(new MeleeEnemy(51, 73, true, 330), 500, getHeight() + 1615);
@@ -228,14 +224,6 @@ public class DemoWorld extends SWorld
         addObject(new Box(), 2250, getHeight() + 2100);
         addObject(new Box(), 2150, getHeight() + 2100);
         
-        //Ranged enemy floor
-        //Could be removed if we find it too hard
-        addObject(new Box(), 1600, getHeight() + 1800);
-        addObject(new Box(), 1700, getHeight() + 1800);
-        
-        addObject(new Box(), 1500, getHeight() + 2000);
-        addObject(new Box(), 1600, getHeight() + 2000);
-        
         // Add final series of jumps
         addObject(new Box(), 2050, getHeight() + 2200);
         addObject(new Box(), 1950, getHeight() + 2200);
@@ -266,9 +254,6 @@ public class DemoWorld extends SWorld
         addObject(new Box(), 550, getHeight() + 2000);
         addObject(new Box(), 650, getHeight() + 2000);
         addObject(new Box(), 750, getHeight() + 2000);
-        addObject(new Box(), 850, getHeight() + 2000);
-        addObject(new Box(), 850, getHeight() + 1900);
-        addObject(new Box(), 850, getHeight() + 1800);
     }
     
     private void makeBottomSpikes()
