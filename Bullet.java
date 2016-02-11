@@ -25,6 +25,14 @@ public class Bullet extends QActor
         maxDistance = dist;
     }
     
+    public Bullet(int width, int height, boolean move, int dist, int speed)
+    {
+        getImage().scale(width, height);
+        canMove = move;
+        maxDistance = dist;
+        this.speed = speed;
+    }
+    
     /**
      * Act - do whatever the Penguin wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
