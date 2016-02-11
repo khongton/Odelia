@@ -51,7 +51,7 @@ public class DemoWorld extends SWorld
     public void placeEnemies()
     {
         //Politician
-        addObject(new Penguin(32, 70, false, 0), 1100, getHeight() + 2015);
+        addObject(new Penguin(32, 70, false, 0), 775, getHeight() + 1915);
         
         //Zigzag Shooter
         addObject(new RangedEnemy(53, 63, false, 0), 1800, getHeight() + 620);
@@ -62,8 +62,15 @@ public class DemoWorld extends SWorld
         //Pit enemy
         addObject(new MeleeEnemy(51, 73, true, 200), 700, getHeight() + 1215);
         
+        // Final area enemies
+        addObject(new MeleeEnemy(51, 73, true, 450), 550, getHeight() + 1615);
+        addObject(new MeleeEnemy(51, 73, true, 420), 1100, getHeight() + 1615);
+        
+        addObject(new MeleeEnemy(51, 73, true, 150), 2250, getHeight() + 1815);
+        addObject(new MeleeEnemy(51, 73, true, 250), 2150, getHeight() + 2015);
+        
         //Enemy before politician
-        addObject(new MeleeEnemy(51, 73, true, 330), 500, getHeight() + 1615);
+        // addObject(new MeleeEnemy(51, 73, true, 330), 500, getHeight() + 1615);
     }
     
     public void makeLevel()
@@ -76,6 +83,8 @@ public class DemoWorld extends SWorld
         makeLowerLevel();
         makePit();
         makeFinalArea();
+        
+        makeBottomSpikes();
     }
 
     
@@ -120,7 +129,7 @@ public class DemoWorld extends SWorld
           addObject(new Box(75, 75), 2300, getHeight() + 600);
           addObject(new Box(75, 75), 2100, getHeight() + 700);
           
-          for (int i = 0; i < 17; i++)
+          for (int i = 0; i < 30; i++)
             addObject(new Spikes(), 1965 + i * 30, getHeight() + 1040);
           
           addObject(new Box(), 1800, getHeight() + 700);
@@ -187,11 +196,69 @@ public class DemoWorld extends SWorld
         for (int i = 1; i < 3; i++)
             addObject(new Box(), 400, getHeight() + 1500 + 100 * i);
 
-        //Spawn final floors and wall
-        for (int i = 0; i < 4; i++) {
+        //Spawn floor
+        for (int i = 0; i < 11; i++) {
             addObject(new Box(), 500 + i * 100, getHeight() + 1700);
-            addObject(new Box(), 800, getHeight() + 1800 + i * 100);
-            addObject(new Box(), 800 + i * 100, getHeight() + 2100);
         }
+        
+        // Spawn next "level" up
+        addObject(new Box(), 1600, getHeight() + 1600);
+        addObject(new Box(), 1700, getHeight() + 1600);
+        
+        // Spawn floor with enemy
+        for (int i = 0; i < 5; i++)
+            addObject(new Box(), 1800 + i * 100, getHeight() + 1500);
+            
+        // Make "staircase" on right edge going down
+        addObject(new Box(), 2450, getHeight() + 1500);
+        
+        addObject(new Box(), 2450, getHeight() + 1700);
+        addObject(new Box(), 2350, getHeight() + 1700);
+        
+        addObject(new Box(), 2450, getHeight() + 1900);
+        addObject(new Box(), 2350, getHeight() + 1900);
+        addObject(new Box(), 2250, getHeight() + 1900);
+        
+        addObject(new Box(), 2450, getHeight() + 2100);
+        addObject(new Box(), 2350, getHeight() + 2100);
+        addObject(new Box(), 2250, getHeight() + 2100);
+        addObject(new Box(), 2150, getHeight() + 2100);
+        
+        // Add final series of jumps
+        addObject(new Box(), 2050, getHeight() + 2200);
+        addObject(new Box(), 1950, getHeight() + 2200);
+        addObject(new Box(), 1850, getHeight() + 2200);
+        
+        addObject(new Box(), 1650, getHeight() + 2400);
+        addObject(new Box(), 1550, getHeight() + 2400);
+        addObject(new Box(), 1450, getHeight() + 2400);
+        
+        addObject(new Box(), 1250, getHeight() + 2300);
+        addObject(new Box(), 1050, getHeight() + 2300);
+        
+        addObject(new Box(), 850, getHeight() + 2400);
+        addObject(new Box(), 750, getHeight() + 2400);
+        addObject(new Box(), 650, getHeight() + 2400);
+        
+        addObject(new Box(), 450, getHeight() + 2300);
+        addObject(new Box(), 350, getHeight() + 2300);
+        addObject(new Box(), 250, getHeight() + 2300);
+        
+        // Final zig zag
+        addObject(new Box(75, 75), 150, getHeight() + 2200);
+        addObject(new Box(75, 75), 350, getHeight() + 2100);
+        addObject(new Box(75, 75), 150, getHeight() + 2000);
+        addObject(new Box(75, 75), 350, getHeight() + 1900);
+        
+        // Politician path
+        addObject(new Box(), 550, getHeight() + 2000);
+        addObject(new Box(), 650, getHeight() + 2000);
+        addObject(new Box(), 750, getHeight() + 2000);
+    }
+    
+    private void makeBottomSpikes()
+    {
+        for (int i = 0; i < 2500; i += 30)
+            addObject(new Spikes(), i, 3010);
     }
 }
