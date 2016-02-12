@@ -140,13 +140,13 @@ public class Odelia extends QActor
     public void collisions() 
     {
         if (isTouching(Penguin.class) && (getCurrentAnimation() == CurrentAnimation.ATTACK_LEFT.ordinal() || getCurrentAnimation() == CurrentAnimation.ATTACK_RIGHT.ordinal()))
-            Greenfoot.setWorld(new Restart(true));
+            Greenfoot.setWorld(new Restart(true, (DemoWorld) getWorld()));
         else if (isTouching(Spikes.class))
-            Greenfoot.setWorld(new Restart(false));
+            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
         else if (getOneIntersectingObject(Bullet.class) != null)
-            Greenfoot.setWorld(new Restart(false));
+            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
         else if (getOneIntersectingObject(MeleeEnemy.class) != null)
-            Greenfoot.setWorld(new Restart(false));
+            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
         
         while (getOneObjectAtOffset(1, getImage().getHeight()/2 + 1, Box.class) != null)
         {

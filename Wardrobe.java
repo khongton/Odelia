@@ -12,7 +12,7 @@ public class Wardrobe extends World
     private boolean changedClothes = false;
     private boolean weaponsGathered = false;
     private boolean leftHouse = false;
-    private GreenfootSound opening, changing, door;
+    private GreenfootSound opening, changing, door, knife;
     private int numClicks = 0;
     /**
      * Constructor for objects of class Wardrobe.
@@ -40,13 +40,23 @@ public class Wardrobe extends World
             weaponGathering();
         else if (numClicks == 3)
             leavingHouse();
+        else if (numClicks == 4)
+            startGame();
+    }
+    
+    public void startGame()
+    {
+        if (Greenfoot.mouseClicked(null))
+        {
+            Greenfoot.setWorld(new DemoWorld());
+        }
     }
     
     public void wardrobeOpening()
     {
         if (Greenfoot.mouseClicked(null))
         {
-            addObject(new Text("Well, it's time\n to get ready.", 40, true), 200, 200);
+            addObject(new Text("Well, it's time\n to get ready.", 40, true), 200, 100);
             opening = new GreenfootSound("opening.wav");
             opening.setVolume(75);
             opening.play();
@@ -62,7 +72,7 @@ public class Wardrobe extends World
             changing = new GreenfootSound("changing.wav");
             changing.setVolume(75);
             changing.play();
-            addObject(new Text("I haven't put these on in a while...", 40, true), getWidth()/2, 300);
+            addObject(new Text("I haven't put these on in a while...", 40, true), getWidth()/2, 200);
             changedClothes = true;
             numClicks++;
         }
@@ -70,9 +80,25 @@ public class Wardrobe extends World
     
     public void weaponGathering()
     {
+        if (Greenfoot.mouseClicked(null))
+        {
+            changing.stop();
+            knife = new GreenfootSound("knife.wav");
+            knife.setVolume(75);
+            knife.play();
+            addObject(new Text("This is still sharp \nafter all these years?", 40, true), getWidth()/2 + 100, 300);
+            numClicks++;
+        }
     }
     
     public void leavingHouse()
     {
+        if (Greenfoot.mouseClicked(null))
+        {
+            knife.stop();
+            door.play();
+            addObject(new Text("Good.\n It'll be a quick job then.", 40, true), getWidth()/2, 400);
+            numClicks++;
+        }
     }
 }
