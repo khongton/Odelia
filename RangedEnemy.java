@@ -16,13 +16,14 @@ public class RangedEnemy extends Enemy
     private int attackBuffer = 125;
     private int width;
     private int height;
+    private int enemyNum;
     
     public RangedEnemy()
     {
         getImage().scale(100, 100);
     }
     
-    public RangedEnemy(int width, int height, boolean move, int dist)
+    public RangedEnemy(int width, int height, boolean move, int dist, int enemyNum)
     {
         getImage().scale(width, height);
         canMove = move;
@@ -30,6 +31,7 @@ public class RangedEnemy extends Enemy
         
         this.width = width;
         this.height = height;
+        this.enemyNum = enemyNum;
     }
     
     private boolean attackBuffer()
@@ -52,9 +54,19 @@ public class RangedEnemy extends Enemy
      */
     public void act() 
     {
-        if (attackBuffer())
+        if (attackBuffer() && enemyNum == 1)
         {
             getWorld().addObject(new Bullet(20, 20, true, 1000), 1845, 1210);
+        }
+        
+        if (attackBuffer() && enemyNum == 2)
+        {
+            getWorld().addObject(new Bullet(20, 20, true, 1000, 6), 1695, getWorld().getHeight() + 1705);
+        }
+        
+        if (attackBuffer() && enemyNum == 3)
+        {
+            getWorld().addObject(new Bullet(20, 20, true, 1000, 5), 1595, getWorld().getHeight() + 1905);
         }
     }
 }
