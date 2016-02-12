@@ -48,9 +48,9 @@ public abstract class QActor extends AnimatedActor
         super();
     }
     
-    public QActor(String actor, int numIdle, int numWalking)
+    public QActor(String actor, int numIdle, int numWalking, int numAttack)
     {
-        super(actor, numIdle, numWalking);
+        super(actor, numIdle, numWalking, numAttack);
     }
     
     /**

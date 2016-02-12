@@ -10,26 +10,12 @@ import java.util.ArrayList;
  */
 public class AnimatedActor extends Actor
 {
-    // Store arrays for both animations in an array list
-    private class ImageList
-    {
-        public GreenfootImage[] list;
-        
-        public ImageList(String prefix, int numImages)
-        {
-            this.list = new GreenfootImage[numImages];
-            
-            for (int i = 0; i < numImages; i++)
-            {
-                this.list[i] = new GreenfootImage(prefix + "_" + i + ".png");
-            }
-        }
-    }
-    
     private ArrayList<ImageList> animations;
     private int imageBuffer;
     private int currentImage;
     private int currentAnimation;
+    
+    private int numPlayed = 0;
     
     // Default constructor
     public AnimatedActor()
@@ -37,7 +23,7 @@ public class AnimatedActor extends Actor
         // Do we need to do anything here?
     }
     
-    public AnimatedActor(String actor, int numIdle, int numWalking)
+    public AnimatedActor(String actor, int numIdle, int numWalking, int numAttack)
     {
         animations = new ArrayList<ImageList>();
         
@@ -48,6 +34,10 @@ public class AnimatedActor extends Actor
         // Initialize walking animation
         animations.add(new ImageList(actor + "_run_left", numWalking));
         animations.add(new ImageList(actor + "_run_right", numWalking));
+        
+        // Initialize attacking animation
+        animations.add(new ImageList(actor + "_attack_left", numAttack));
+        animations.add(new ImageList(actor + "_attack_right", numAttack));
         
         this.imageBuffer = 3;
         this.currentImage = 0;
@@ -97,6 +87,41 @@ public class AnimatedActor extends Actor
     {
         if (animateBuffer())
         {
+            if (currentImage == animations.get(currentAnimation).list.length - 1)
+            {
+                if (currentAnimation == CurrentAnimation.ATTACK_LEFT.ordinal())
+                {
+                    if (Greenfoot.isKeyDown("left"))
+                    {
+                        currentAnimation = CurrentAnimation.WALKING_LEFT.ordinal();
+                    }
+                    else if (Greenfoot.isKeyDown("right"))
+                    {
+                        currentAnimation = CurrentAnimation.WALKING_RIGHT.ordinal();
+                    }
+                    else
+                    {
+                        currentAnimation = CurrentAnimation.IDLE_LEFT.ordinal();
+                    }
+                }
+                else if (currentAnimation == CurrentAnimation.ATTACK_RIGHT.ordinal())
+                {
+                    if (Greenfoot.isKeyDown("left"))
+                    {
+                        currentAnimation = CurrentAnimation.WALKING_LEFT.ordinal();
+                    }
+                    else if (Greenfoot.isKeyDown("right"))
+                    {
+                        currentAnimation = CurrentAnimation.WALKING_RIGHT.ordinal();
+                    }
+                    else
+                    {
+                        currentAnimation = CurrentAnimation.IDLE_RIGHT.ordinal();
+                    }
+                }
+                
+            }
+            
             currentImage = (currentImage + 1) % animations.get(currentAnimation).list.length;
             this.setImage(animations.get(currentAnimation).list[currentImage]);
         }
