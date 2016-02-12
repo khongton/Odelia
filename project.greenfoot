@@ -10,6 +10,7 @@ class.Cutscene.superclass=greenfoot.World
 class.DemoWorld.image=Ruined\ City\ Background\ Preview.png
 class.DemoWorld.superclass=SWorld
 class.Enemy.superclass=QActor
+class.ImageList.superclass=
 class.MeleeEnemy.image=melee_enemy.png
 class.MeleeEnemy.superclass=Enemy
 class.Obstacle.superclass=greenfoot.Actor
@@ -77,6 +78,7 @@ dependency22.type=UsesDependency
 dependency23.from=AnimatedActor
 dependency23.to=CurrentAnimation
 dependency23.type=UsesDependency
+<<<<<<< HEAD
 dependency24.from=Cutscene
 dependency24.to=Text
 dependency24.type=UsesDependency
@@ -86,6 +88,20 @@ dependency25.type=UsesDependency
 dependency26.from=Wardrobe
 dependency26.to=Text
 dependency26.type=UsesDependency
+=======
+dependency24.from=AnimatedActor
+dependency24.to=ImageList
+dependency24.type=UsesDependency
+dependency25.from=Odelia
+dependency25.to=ImageList
+dependency25.type=UsesDependency
+dependency26.from=MeleeEnemy
+dependency26.to=CurrentAnimation
+dependency26.type=UsesDependency
+dependency27.from=MeleeEnemy
+dependency27.to=ImageList
+dependency27.type=UsesDependency
+>>>>>>> refs/remotes/origin/master
 dependency3.from=Odelia
 dependency3.to=Penguin
 dependency3.type=UsesDependency
@@ -111,6 +127,7 @@ editor.fx.0.height=700
 editor.fx.0.width=700
 editor.fx.0.x=0
 editor.fx.0.y=0
+<<<<<<< HEAD
 editor.swing.0.height=0
 editor.swing.0.width=0
 editor.swing.0.x=0
@@ -121,6 +138,18 @@ mainWindow.x=118
 mainWindow.y=67
 package.numDependencies=26
 package.numTargets=18
+=======
+editor.swing.0.height=700
+editor.swing.0.width=700
+editor.swing.0.x=497
+editor.swing.0.y=178
+mainWindow.height=742
+mainWindow.width=1127
+mainWindow.x=578
+mainWindow.y=82
+package.numDependencies=27
+package.numTargets=17
+>>>>>>> refs/remotes/origin/master
 project.charset=windows-1252
 readme.height=58
 readme.name=@README
@@ -136,29 +165,38 @@ target1.width=80
 target1.x=130
 target1.y=370
 target10.height=50
-target10.name=MeleeEnemy
+target10.name=ImageList
 target10.showInterface=false
 target10.type=ClassTarget
 target10.typeParameters=
-target10.width=100
-target10.x=100
-target10.y=310
+target10.width=80
+target10.x=140
+target10.y=430
 target11.height=50
-target11.name=Spikes
+target11.name=MeleeEnemy
 target11.showInterface=false
 target11.type=ClassTarget
 target11.typeParameters=
-target11.width=80
-target11.x=120
-target11.y=10
+target11.width=100
+target11.x=100
+target11.y=310
 target12.height=50
+<<<<<<< HEAD
 target12.name=Cutscene
+=======
+target12.name=Spikes
+>>>>>>> refs/remotes/origin/master
 target12.showInterface=false
 target12.type=ClassTarget
 target12.typeParameters=
 target12.width=80
+<<<<<<< HEAD
 target12.x=140
 target12.y=430
+=======
+target12.x=120
+target12.y=10
+>>>>>>> refs/remotes/origin/master
 target13.height=50
 target13.name=Enemy
 target13.showInterface=false
@@ -184,11 +222,16 @@ target15.width=90
 target15.x=160
 target15.y=70
 target16.height=50
+<<<<<<< HEAD
 target16.name=Wardrobe
+=======
+target16.name=QActor
+>>>>>>> refs/remotes/origin/master
 target16.showInterface=false
-target16.type=ClassTarget
+target16.type=AbstractTarget
 target16.typeParameters=
 target16.width=80
+<<<<<<< HEAD
 target16.x=10
 target16.y=490
 target17.height=50
@@ -207,6 +250,18 @@ target18.typeParameters=
 target18.width=80
 target18.x=100
 target18.y=130
+=======
+target16.x=130
+target16.y=250
+target17.height=50
+target17.name=SWorld
+target17.showInterface=false
+target17.type=ClassTarget
+target17.typeParameters=
+target17.width=80
+target17.x=100
+target17.y=130
+>>>>>>> refs/remotes/origin/master
 target2.height=50
 target2.name=Obstacle
 target2.showInterface=false
