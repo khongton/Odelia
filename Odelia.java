@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class Odelia here.
@@ -14,10 +15,27 @@ public class Odelia extends QActor
     public boolean onGround;
     
     private int soundBuffer = 10;
+    private boolean attacking = false;
+    
+    private boolean facingLeft = true;
+    
+    private final int ATTACK_LEFT = 0;
+    private final int ATTACK_RIGHT = 1;
+    
+    private ArrayList<ImageList> attackAnimation;
+    
+    private int attackAnimationBuffer = 10;
+    private int currentAttackFrame = 0;
     
     public Odelia()
     {
-        super("Odelia", 14, 4);
+        super("Odelia", 14, 4, 9);
+        
+        /*
+        attackAnimation = new ArrayList<ImageList>();
+        attackAnimation.add(new ImageList("Odelia_attack_left", 9));
+        attackAnimation.add(new ImageList("Odelia_attack_right", 9));
+        */
     }
     
     /**
@@ -31,29 +49,47 @@ public class Odelia extends QActor
         // Just in case we need to tweak this
         final int IMAGE_BUFFER = 3;
         
-        if (getCurrentAnimation() != CurrentAnimation.WALKING_LEFT.ordinal() && Greenfoot.isKeyDown("left"))
+        if (!Greenfoot.isKeyDown("control"))
         {
-            setImageBuffer(IMAGE_BUFFER);
-            setCurrentImage(0);
-            setAnimation(CurrentAnimation.WALKING_LEFT.ordinal());
+            if (getCurrentAnimation() != CurrentAnimation.WALKING_LEFT.ordinal() && Greenfoot.isKeyDown("left"))
+            {
+                setImageBuffer(IMAGE_BUFFER);
+                setCurrentImage(0);
+                setAnimation(CurrentAnimation.WALKING_LEFT.ordinal());
+            }
+            else if (getCurrentAnimation() != CurrentAnimation.WALKING_RIGHT.ordinal() && Greenfoot.isKeyDown("right"))
+            {
+                setImageBuffer(IMAGE_BUFFER);
+                setCurrentImage(0);
+                setAnimation(CurrentAnimation.WALKING_RIGHT.ordinal());
+            }
+            else if (getCurrentAnimation() == CurrentAnimation.WALKING_LEFT.ordinal() && !Greenfoot.isKeyDown("left"))
+            {
+                setImageBuffer(IMAGE_BUFFER);
+                setCurrentImage(0);
+                setAnimation(CurrentAnimation.IDLE_LEFT.ordinal());
+            }
+            else if (getCurrentAnimation() == CurrentAnimation.WALKING_RIGHT.ordinal() && !Greenfoot.isKeyDown("right"))
+            {
+                setImageBuffer(IMAGE_BUFFER);
+                setCurrentImage(0);
+                setAnimation(CurrentAnimation.IDLE_RIGHT.ordinal());
+            }
         }
-        else if (getCurrentAnimation() != CurrentAnimation.WALKING_RIGHT.ordinal() && Greenfoot.isKeyDown("right"))
+        else
         {
-            setImageBuffer(IMAGE_BUFFER);
-            setCurrentImage(0);
-            setAnimation(CurrentAnimation.WALKING_RIGHT.ordinal());
-        }
-        else if (getCurrentAnimation() == CurrentAnimation.WALKING_LEFT.ordinal() && !Greenfoot.isKeyDown("left"))
-        {
-            setImageBuffer(IMAGE_BUFFER);
-            setCurrentImage(0);
-            setAnimation(CurrentAnimation.IDLE_LEFT.ordinal());
-        }
-        else if (getCurrentAnimation() == CurrentAnimation.WALKING_RIGHT.ordinal() && !Greenfoot.isKeyDown("right"))
-        {
-            setImageBuffer(IMAGE_BUFFER);
-            setCurrentImage(0);
-            setAnimation(CurrentAnimation.IDLE_RIGHT.ordinal());
+            if (facingLeft)
+            {
+                setImageBuffer(IMAGE_BUFFER);
+                setCurrentImage(0);
+                setAnimation(CurrentAnimation.ATTACK_LEFT.ordinal());
+            }
+            else
+            {
+                setImageBuffer(IMAGE_BUFFER);
+                setCurrentImage(0);
+                setAnimation(CurrentAnimation.ATTACK_RIGHT.ordinal());
+            }
         }
         
         getDirection();
@@ -74,6 +110,62 @@ public class Odelia extends QActor
         // }
     }
     
+    private boolean attackAnimationBuffer()
+    {
+        if (attackAnimationBuffer < 1)
+        {
+            attackAnimationBuffer = 10;
+            return true;
+        }
+        else
+        {
+            attackAnimationBuffer--;
+        }
+        
+        return false;
+    }
+    
+    private void attack()
+    {
+        attacking = true;
+        
+        // Animate
+        /*
+        if (attackAnimationBuffer())
+        {
+            if (facingLeft)
+            {
+                currentAttackFrame = (currentAttackFrame + 1) % attackAnimation.get(ATTACK_LEFT).list.length;
+                this.setImage(attackAnimation.get(ATTACK_LEFT).list[currentAttackFrame]);
+            }
+            else
+            {
+                currentAttackFrame = (currentAttackFrame + 1) % attackAnimation.get(ATTACK_RIGHT).list.length;
+                this.setImage(attackAnimation.get(ATTACK_RIGHT).list[currentAttackFrame]);
+            }
+        }
+        */
+        
+        while (currentAttackFrame < attackAnimation.get(ATTACK_LEFT).list.length)
+        {
+            if (facingLeft)
+            {
+                if (attackAnimationBuffer())
+                    this.setImage(attackAnimation.get(ATTACK_LEFT).list[currentAttackFrame++]);
+            }
+            else
+            {
+                if (attackAnimationBuffer())
+                    this.setImage(attackAnimation.get(ATTACK_RIGHT).list[currentAttackFrame++]);
+            }
+        }
+        
+        attackAnimationBuffer = 10;
+        currentAttackFrame = 0;
+        
+        attacking = false;
+    }
+    
     private void bufferSound()
     {
         if (soundBuffer-- < 1)
@@ -85,24 +177,32 @@ public class Odelia extends QActor
     
     public void moveDebug()
     {
-        if (Greenfoot.isKeyDown("left"))
+       if (Greenfoot.isKeyDown("left"))
             setLocation(getX() - 10, getY());
-        if (Greenfoot.isKeyDown("right"))
+       if (Greenfoot.isKeyDown("right"))
             setLocation(getX() + 10, getY());
-        if (Greenfoot.isKeyDown("up"))
+       if (Greenfoot.isKeyDown("up"))
             setLocation(getX(), getY() - 10);
-        if (Greenfoot.isKeyDown("down"))
+       if (Greenfoot.isKeyDown("down"))
             setLocation(getX(), getY() + 10);
     }
     
     public void getDirection()
     {
-        if (Greenfoot.isKeyDown("left"))
+       if (Greenfoot.isKeyDown("left"))
+       {
             setLocation(getX() - speed, getY());
-        if (Greenfoot.isKeyDown("right"))
+            facingLeft = true;
+       }
+       if (Greenfoot.isKeyDown("right"))
+       {
             setLocation(getX() + speed, getY());
-        if (Greenfoot.isKeyDown("up") && onGround)
+            facingLeft = false;
+       }
+       if (Greenfoot.isKeyDown("up") && onGround)
+       {
             ySpeed -= jumpStr;
+       }
     }
     
     public void move()
