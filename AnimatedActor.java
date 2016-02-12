@@ -101,7 +101,22 @@ public class AnimatedActor extends Actor
                     }
                     else
                     {
-                        currentAnimation = currentAnimation.IDLE_LEFT.ordinal();
+                        currentAnimation = CurrentAnimation.IDLE_LEFT.ordinal();
+                    }
+                }
+                else if (currentAnimation == CurrentAnimation.ATTACK_RIGHT.ordinal())
+                {
+                    if (Greenfoot.isKeyDown("left"))
+                    {
+                        currentAnimation = CurrentAnimation.WALKING_LEFT.ordinal();
+                    }
+                    else if (Greenfoot.isKeyDown("right"))
+                    {
+                        currentAnimation = CurrentAnimation.WALKING_RIGHT.ordinal();
+                    }
+                    else
+                    {
+                        currentAnimation = CurrentAnimation.IDLE_RIGHT.ordinal();
                     }
                 }
                 
