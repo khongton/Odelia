@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Obstacle here.
+ * This class is used primarily to help us with our project hierarchy.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak, Jeremy Billote
+ * @version 2.16.16
  */
 public class Obstacle extends Actor
 {

@@ -1,8 +1,8 @@
 /**
- * Write a description of class CurrentAnimation here.
+ * Enums to allow for proper animation frame loading.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeremy Billote
+ * @version 2.16.16
  */
 public enum CurrentAnimation  
 {

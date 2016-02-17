@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Politician
+comment0.text=\r\n\ The\ Politician\ that\ Odelia\ is\ trying\ to\ assassinate.\r\n\ The\ empty\ act\ method\ is\ necessary\ for\ compilation.\ \r\n\ \r\n\ @author\ Kevin\ Hongtongsak,\ Jeremy\ Billote\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=Politician()
+comment2.params=width\ height
+comment2.target=Politician(int,\ int)
+comment3.params=
+comment3.target=void\ act()
+comment3.text=\r\n\ Act\ -\ do\ whatever\ the\ Penguin\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+numComments=4

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Spikes
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Spikes\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ An\ obstacle.\ Has\ no\ function\ besides\ getting\ in\ the\ way\ of\ the\ player.\r\n\ \r\n\ @author\ Kevin\ Hongtongsak,\ Jeremy\ Billote\r\n\ @version\ 2.16.16\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Spikes\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n

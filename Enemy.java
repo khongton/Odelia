@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy here.
+ * Superclass to allow for two enemy types.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeremy Billote
+ * @version 2.16.16
  */
 public class Enemy extends QActor
 {

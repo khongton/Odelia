@@ -2,10 +2,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Odelia here.
+ * Odelia is the protagonist of the game.
+ * All methods necesasary to allow for proper player movement is handled here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak, Jeremy Billote
+ * @version 2.16.16
  */
 public class Odelia extends QActor
 {
@@ -13,10 +14,8 @@ public class Odelia extends QActor
     public int ySpeed = 0;
     public int jumpStr = 22;
     public boolean onGround;
-    
     private int soundBuffer = 10;
     private boolean attacking = false;
-    
     private boolean facingLeft = true;
     
     public Odelia()
@@ -32,9 +31,27 @@ public class Odelia extends QActor
     {
         super.act();
         
-        // Just in case we need to tweak this
+        setAnimationFrame();
+        getDirection();
+        move();
+        // moveDebug();
+        collisions();
+        
+        if ((getCurrentAnimation() == CurrentAnimation.WALKING_RIGHT.ordinal() || getCurrentAnimation() == CurrentAnimation.WALKING_LEFT.ordinal()) && onGround)
+        {
+            // Play footstep sound effect
+            bufferSound();
+        }
+    }
+    
+    /**
+     * This method controls when each animation frame will be used during any of Odelia's actions.
+     */
+    public void setAnimationFrame()
+    {
         final int IMAGE_BUFFER = 3;
         
+        //Set the frame based on the current status of Odelia.
         if (!Greenfoot.isKeyDown("control"))
         {
             if (getCurrentAnimation() != CurrentAnimation.WALKING_LEFT.ordinal() && Greenfoot.isKeyDown("left"))
@@ -76,20 +93,12 @@ public class Odelia extends QActor
                 setCurrentImage(0);
                 setAnimation(CurrentAnimation.ATTACK_RIGHT.ordinal());
             }
-        }
-        
-        getDirection();
-        move();
-        // moveDebug();
-        collisions();
-        
-        if ((getCurrentAnimation() == CurrentAnimation.WALKING_RIGHT.ordinal() || getCurrentAnimation() == CurrentAnimation.WALKING_LEFT.ordinal()) && onGround)
-        {
-            // Play footstep sound effect
-            bufferSound();
-        }
+        }        
     }
     
+    /**
+     * Play footstep sounds when running.
+     */
     private void bufferSound()
     {
         if (soundBuffer-- < 1)
@@ -99,6 +108,9 @@ public class Odelia extends QActor
         }
     }
     
+    /**
+     * No gravity movement. For testing purposes only.
+     */
     public void moveDebug()
     {
        if (Greenfoot.isKeyDown("left"))
@@ -111,6 +123,9 @@ public class Odelia extends QActor
             setLocation(getX(), getY() + 10);
     }
     
+    /**
+     * Get input from player to determine the speed and velocity of Odelia's next movement action.
+     */
     public void getDirection()
     {
        if (Greenfoot.isKeyDown("left"))
@@ -129,25 +144,24 @@ public class Odelia extends QActor
        }
     }
     
+    /**
+     * Carry out the actual movement.
+     */
     public void move()
     {
         ySpeed++;
         setLocation(getX(), getY() + ySpeed/2);
         onGround = false;
     }
-    
-    //Update this with collision detecter from other game
+   
+    /**
+     * Handle collisions with other game objects in the game.
+     */
     public void collisions() 
     {
-        if (isTouching(Penguin.class) && (getCurrentAnimation() == CurrentAnimation.ATTACK_LEFT.ordinal() || getCurrentAnimation() == CurrentAnimation.ATTACK_RIGHT.ordinal()))
-            Greenfoot.setWorld(new Restart(true, (DemoWorld) getWorld()));
-        else if (isTouching(Spikes.class))
-            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
-        else if (getOneIntersectingObject(Bullet.class) != null)
-            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
-        else if (getOneIntersectingObject(MeleeEnemy.class) != null)
-            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
+        checkEnemy();
         
+        //Continually check in 4 directions to ensure that Odelia doesn't fall through the ground
         while (getOneObjectAtOffset(1, getImage().getHeight()/2 + 1, Box.class) != null)
         {
             setLocation(getX(), getY() - 1);
@@ -166,6 +180,32 @@ public class Odelia extends QActor
         while (getOneObjectAtOffset(-getImage().getWidth()/2-1, 0, Box.class) != null)
         {
             setLocation(getX() + 1, getY());
+        }
+    }
+    
+    /**
+     * Check if an enemy has touched Odelia or if Odelia has assassinated the politician.
+     */
+    public void checkEnemy()
+    {
+        //First if checks whether or not the attack has connected with the Politician
+        if (isTouching(Politician.class) && 
+            (getCurrentAnimation() == CurrentAnimation.ATTACK_LEFT.ordinal() || 
+            getCurrentAnimation() == CurrentAnimation.ATTACK_RIGHT.ordinal()))
+        {
+            Greenfoot.setWorld(new Restart(true, (DemoWorld) getWorld()));
+        }
+        else if (isTouching(Spikes.class)) 
+        {
+            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
+        }
+        else if (getOneIntersectingObject(Bullet.class) != null)
+        {
+            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));
+        }
+        else if (getOneIntersectingObject(MeleeEnemy.class) != null)
+        {
+            Greenfoot.setWorld(new Restart(false, (DemoWorld) getWorld()));   
         }
     }
 }

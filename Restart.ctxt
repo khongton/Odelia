@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Restart
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Restart\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ class\ that\ creates\ the\ game\ over\ screen\ and\ allows\ the\ player\ to\ restart\ the\ game.\r\n\ \r\n\ @author\ Kevin\ Hongtongsak,\ Jeremy\ Billote\r\n\ @version\ 2.16.16\r\n
 comment1.params=success\ world
 comment1.target=Restart(boolean,\ DemoWorld)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Restart.\r\n\ \r\n

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class DemoWorld here.
+ * The main game world. All game objects are added from this world.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak, Jeremy Billote
+ * @version 2.16.16
  */
 public class DemoWorld extends SWorld
 {
@@ -29,16 +29,6 @@ public class DemoWorld extends SWorld
         bgm.playLoop();
     }
     
-    public void started()
-    {
-        bgm.playLoop();
-    }
-    
-    public void stopped()
-    {
-        bgm.pause();
-    }
-    
     public void placeInstructions()
     {
         addObject(new Text("Left/Right for movement.\nUp to jump.", 25, true),
@@ -51,7 +41,7 @@ public class DemoWorld extends SWorld
     public void placeEnemies()
     {
         //Politician
-        addObject(new Penguin(32, 70, false, 0), 775, getHeight() + 1915);
+        addObject(new Politician(32, 70), 775, getHeight() + 1915);
         
         //Zigzag Shooter
         addObject(new RangedEnemy(53, 63, false, 0, 1), 1800, getHeight() + 620);
@@ -90,7 +80,6 @@ public class DemoWorld extends SWorld
         makeBottomSpikes();
     }
 
-    
     public void makeBottomKink()
     {
         //the ceiling and floor kink on bottom level
@@ -109,9 +98,8 @@ public class DemoWorld extends SWorld
     
     public void makeStaircase()
     {
-        addObject(new Box(), 1900, getHeight() + 100);
-        addObject(new Box(), 2000, getHeight() + 200);
-        addObject(new Box(), 2100, getHeight() + 300);
+        for (int i = 0; i < 3; i++)
+            addObject(new Box(), 1900 + i * 100, getHeight() + 100 + i * 100);
     }
     
     public void makeStartingArea()
@@ -176,13 +164,6 @@ public class DemoWorld extends SWorld
             addObject(new Spikes(), 1435 - i * 30, getHeight() + 1245);  
         //Prevent overlap with box
         addObject(new Spikes(), 1065, getHeight() + 1245);
-        //area between left wall and this floor should be a death sentence
-        // edit this when we gte an actual spike sprite
-        // final int SPIKE_WIDTH = 30;
-        // final int NUM_SPIKES = 15;
-        // for (int i = 1; i < NUM_SPIKES; i++)
-            // addObject(new Spikes(), getWidth()/2 + 635 + i * SPIKE_WIDTH, getHeight()/2 - 658);
-     
     }
     
     public void makeFinalArea()

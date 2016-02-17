@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bullet here.
+ * A bullet that is instantiated in front of instances of the RangedEnemy class.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak, Jeremy Billote
+ * @version 2.16.16
  */
 public class Bullet extends QActor
 {
@@ -43,13 +43,18 @@ public class Bullet extends QActor
         checkCollision();
     }    
     
-    
+    /**
+     * Removes the bullet from the world if it hits a box.
+     */
     private void checkCollision()
     {
         if (isTouching(Box.class))
             getWorld().removeObject(this);
     }
     
+    /**
+     * Allow bullet movement.
+     */
     private void checkMove()
     {
         if (canMove)
