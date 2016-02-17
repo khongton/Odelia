@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Restart here.
+ * The class that creates the game over screen and allows the player to restart the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak, Jeremy Billote
+ * @version 2.16.16
  */
 public class Restart extends World
 {
@@ -15,7 +15,6 @@ public class Restart extends World
      */
     public Restart(boolean success, DemoWorld world)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1, false);
         dw = world;
         dw.bgm.stop();

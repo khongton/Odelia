@@ -1,12 +1,13 @@
- 
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Block here.
+ * This class is only here to allow instances of it to be instantiated in
+ * the world. 
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * The empty act method is necesary for compilation.
+ * 
+ * @author Kevin Hongtongsak
+ * @version 2.16.16
  */
 public class Box extends QActor
 {

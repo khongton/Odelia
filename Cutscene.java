@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Cutscene here.
+ * This class instantiates the two initial dialog scenes.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak
+ * @version 2.16.16
  */
 public class Cutscene extends World
 {

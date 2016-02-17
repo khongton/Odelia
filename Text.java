@@ -1,13 +1,11 @@
- 
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 
 /**
- * Write a description of class Text here.
+ * A quick and simple class that displays text on-screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak
+ * @version 2.16.16
  */
 public class Text extends Actor
 {   

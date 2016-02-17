@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Bullet
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bullet\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ A\ bullet\ that\ is\ instantiated\ in\ front\ of\ instances\ of\ the\ RangedEnemy\ class.\r\n\ \r\n\ @author\ Kevin\ Hongtongsak,\ Jeremy\ Billote\r\n\ @version\ 2.16.16\r\n
 comment1.params=
 comment1.target=Bullet()
 comment2.params=width\ height\ move\ dist
@@ -12,6 +12,8 @@ comment4.target=void\ act()
 comment4.text=\r\n\ Act\ -\ do\ whatever\ the\ Penguin\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
 comment5.params=
 comment5.target=void\ checkCollision()
+comment5.text=\r\n\ Removes\ the\ bullet\ from\ the\ world\ if\ it\ hits\ a\ box.\r\n
 comment6.params=
 comment6.target=void\ checkMove()
+comment6.text=\r\n\ Allow\ bullet\ movement.\r\n
 numComments=7

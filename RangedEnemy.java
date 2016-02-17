@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class RangedEnemy here.
+ * A simple ranged enemy that shoots bullets.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak, Jeremy Billote
+ * @version 2.16.16
  */
 public class RangedEnemy extends Enemy
 {
@@ -34,6 +34,9 @@ public class RangedEnemy extends Enemy
         this.enemyNum = enemyNum;
     }
     
+    /**
+     * This method sets the timing between bullet shots.
+     */
     private boolean attackBuffer()
     {
         if (attackBuffer < 1)

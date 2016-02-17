@@ -1,10 +1,10 @@
 import greenfoot.*;
 
 /**
- * Write a description of class ImageList here.
+ * An arrray list of GreenfootImages which animation frames are loaded into.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jeremy Billote
+ * @version 2.16.16
  */
 public class ImageList  
 {

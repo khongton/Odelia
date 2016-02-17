@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Wardrobe here.
+ * This class instantiates the scene where Odelia preps for her mission.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak
+ * @version 2.16.16
  */
 public class Wardrobe extends World
 {
@@ -25,10 +25,6 @@ public class Wardrobe extends World
         door.setVolume(85);
         door.play();
     }
-    
-    //TO DO
-    //finish the sounds and text for the weapons gathering and leaving the hoiuse
-    //push to git tomorrow morning
     
     public void act()
     {

@@ -2,10 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class MeleeEnemy here.
+ * A simple melee enemy that oscillates between two end points.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kevin Hongtongsak, Jeremy Billote
+ * @version 2.16.16
  */
 public class MeleeEnemy extends Enemy
 {
@@ -81,7 +81,6 @@ public class MeleeEnemy extends Enemy
             {
                 distTraveled = 0;
                 setSpeed(getSpeed() * -1);
-                // getImage().mirrorHorizontally();
                 
                 this.currentAnimation = this.currentAnimation == WALKING_RIGHT ? WALKING_LEFT : WALKING_RIGHT;
             }
